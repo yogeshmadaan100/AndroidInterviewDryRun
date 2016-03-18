@@ -1,31 +1,49 @@
 # AndroidInterviewDryRun
 This repo contains the answer of Android Dry Run Interview under Udacity Android Nanodegree Program.
-Questions
+#Questions
 Question 1 - What’s your favorite tool or library for Android? Why is it so useful?
+
 Answer - The most favourite library is Rx android - android version of RX Java that help us to solve problems using reactive programming techniques. The most interesting part of the library is that it helps in reducing most of the hectic work of developer ranging from api calls implementation, thread management, loaders, synchronizations and many more. Moreover the overall architecture encouraged by the library helps us to have abstraction over the mdoels and Ui layer following the proper MVC pattern and thus helps in developing a scalabe and reliable product.
 
 Question 2 - You want to open a map app from an app that you’re building. The address, city, state, and ZIP code are provided by the user. What steps are involved in sending that data to a map app?
+
 Answer - The code snippet for above problem is 
 
 public void getLocationOnMap(String address, String city, String state, String zip)
+
 {
+
   Uri gmmIntentUri = Uri.parse("geo:0,0?q="+address+", "+city+" , "+ state +" , " +zip);
+  
   Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+  
   mapIntent.setPackage("com.google.android.apps.maps");
+  
   if (mapIntent.resolveActivity(getPackageManager()) != null) {
+  
     startActivity(mapIntent);
+    
   }
+  
 }
 
 Question 3 - Implement a method to perform basic string compression using the counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the "compressed" string would not become smaller than the original string, your method should return the original string. The method signature is: “public static String compress(String input)” You must write all code in proper Java, and please include import statements for any libraries you use.
+
 Answer - 
 
+
 private static String compressString(String str) {
+
         if (str == null) {
+        
             return null;
+            
         } else if (str.length() <= 2) {
+        
             return str;
+            
         }
+        
  
         // using String type will make the Time Complexity to be O(n^2)
         // because the String in java is immutable, and it will create a new string if you modify it.
@@ -59,18 +77,20 @@ private static String compressString(String str) {
     
 
 Question 4 - List and explain the differences between four different options you have for saving data while making an Android app. Pick one, and explain (without code) how you would implement it.
+
 Answer - 
 Android provides several options for you to save persistent application data. 
 
 Available data storage options are :
 
-Shared Preferences - Store private primitive data in key-value pairs.
-Internal Storage - Store private data on the device memory.
-External Storage - Store public data on the shared external storage.
-SQLite Databases - Store structured data in a private database.
-Network Connection - Store data on the web with your own network server.
+* Shared Preferences - Store private primitive data in key-value pairs.
+* Internal Storage - Store private data on the device memory.
+* External Storage - Store public data on the shared external storage.
+* SQLite Databases - Store structured data in a private database.
+* Network Connection - Store data on the web with your own network server.
 
 Shared Preferences
+
 The SharedPreferences class provides a general framework that allows you to save and retrieve persistent key-value pairs of primitive data types. You can use SharedPreferences to save any primitive data: booleans, floats, ints, longs, and strings. This data will persist across user sessions (even if your application is killed).
 
 User Preferences
@@ -79,17 +99,21 @@ Shared preferences are not strictly for saving "user preferences," such as what 
 To get a SharedPreferences object for your application, use one of two methods:
 
 getSharedPreferences() - Use this if you need multiple preferences files identified by name, which you specify with the first parameter.
-getPreferences() - Use this if you need only one preferences file for your Activity. Because this will be the only preferences file for your Activity, you don't supply a name.
-To write values:
 
-Call edit() to get a SharedPreferences.Editor.
-Add values with methods such as putBoolean() and putString().
-Commit the new values with commit()
+getPreferences() - Use this if you need only one preferences file for your Activity. Because this will be the only preferences file for your Activity, you don't supply a name.
+
+To write values:
+* Call edit() to get a SharedPreferences.Editor.
+* Add values with methods such as putBoolean() and putString().
+* Commit the new values with commit()
 
 To read values:
+
 Use SharedPreferences methods such as getBoolean() and getString().
 
 Question 5 - Given a directed graph, design an algorithm to find out whether there is a route between two nodes. The method signature is: “public static < T > boolean findPath(GraphNode< T > start, GraphNode< T > end)”. Assume you have a “GraphNode” class that has a getChildren() method, which returns a List< GraphNode< T >> object. You must write all code in proper Java, and please include import statements for any libraries you use (no need to import GraphNode).
+
+Answer - 
 
 class Graph
 {
@@ -188,13 +212,14 @@ class Graph
 }
 
 Question 6 - What are your thoughts about Fragments? Do you like or hate them? Why?
+
 Answer - A Fragment represents a behavior or a portion of user interface in an Activity. You can combine multiple fragments in a single activity to build a multi-pane UI and reuse a fragment in multiple activities. 
 
 The main advantages of useing fragments are 
-1. It helps in designing for different screen sizes.
-2. Data transfer between fragments are easier as compared to activities.
-3. Better user expererience and organisation.
-4. Supports advances user metaphors.
+* It helps in designing for different screen sizes.
+* Data transfer between fragments are easier as compared to activities.
+* Better user expererience and organisation.
+* Supports advances user metaphors.
 
 
 
